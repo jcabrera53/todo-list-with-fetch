@@ -51,19 +51,18 @@ async function deleteTask(index){
 const [ListaTareas, setListaTareas] = useState([])
 	return (
 		<div className="text-center bg-light">
-			<div className="text-center">TODOS</div>
+			<div className="text-center">TO DO LIST WITH FETCH</div>
 			<div className="input-group input-group-lg">
   <span className="input-group-text" id="inputGroup-sizing-lg">Ingrese texto:</span>
   <input type="text" onKeyDown={handle} onChange={(event)=>setTexto(event.target.value)} value={texto} className="form-control"  />
 </div>
 
   {ListaTareas.map((task,index) => 
-	<div  className="border" key={index}>
-  <label>{task.label}</label>
-  <label onClick={()=>deleteTask(index)}>X</label>
+	<div  className="border d-flex justify-content-between" key={index}>
+  <label className="ms-3 mt-2 mb-2">{task.label}</label>
+  <label className="me-3 mt-2 mb-2" onClick={()=>deleteTask(index)}>X</label>
   </div>
 )}
-
 		</div>
 	);
 };
