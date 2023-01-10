@@ -32,6 +32,22 @@ async function handle(event){
 	}
 }
 
+async function deleteTask(index){
+	
+		let respuesta = await fetch("https://assets.breatheco.de/apis/fake/todos/user/jcabrera53",{
+		method: 'PUT',
+		headers: {
+		'Content-Type': 'application/json'
+		},
+		body: JSON.stringify(ListaTareas.filter((task,indice)=>index!=indice))
+		})
+		let data = await respuesta.json()
+		  setListaTareas(ListaTareas.filter((task,indice)=>index!=indice))
+		  setTexto("")
+}
+
+
+
 const [ListaTareas, setListaTareas] = useState([])
 	return (
 		<div className="text-center bg-light">
@@ -44,7 +60,7 @@ const [ListaTareas, setListaTareas] = useState([])
   {ListaTareas.map((task,index) => 
 	<div  className="border" key={index}>
   <label>{task.label}</label>
-  <label onClick={()=>console.log(index)}>X</label>
+  <label onClick={()=>deleteTask(index)}>X</label>
   </div>
 )}
 
